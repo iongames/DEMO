@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b32632bd130c40a78854c7e68fff6071" Name="Diagram1">
+        <EntityTypeShape EntityType="DEMOModel.Activities" Width="1.5" PointX="8.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Cities" Width="1.5" PointX="3.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Countries" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Directions" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Events" Width="1.5" PointX="6" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Genders" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Jury" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Moderators" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Organizers" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.Participants" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DEMOModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Jury" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Jury1" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Jury2" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Jury3" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Jury4" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Moderators" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Activities_Participants" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Events_Cities" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Jury_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Moderators_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Organizers_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Participants_Countries" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Jury_Directions" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Moderators_Directions" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Moderators_Events" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Jury_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Moderators_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Organizers_Genders" ManuallyRouted="false" />
+        <AssociationConnector Association="DEMOModel.FK_Participants_Genders" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,67 @@
+﻿<Window x:Class="DEMO.Windows.OrganizerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DEMO.Windows"
+        mc:Ignorable="d"
+        Title="OrganizerWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Окно Организатора"
+                   FontSize="30"
+                   FontWeight="Bold"
+                   TextAlignment="Center"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <Border Width="140" Height="240" CornerRadius="8"
+                        BorderThickness="2"
+                        BorderBrush="#FFFFE42F">
+                    <Image  x:Name="UserImage"/>
+                </Border>
+                <Button Style="{DynamicResource ButtonStyleOrganizer}"
+                        Width="140"
+                        Height="50"
+                        Padding="20 0"
+                        Margin="0 40 0 0"
+                        Background="White"
+                        BorderThickness="2"
+                        BorderBrush="#FFFFE42F">
+                    <TextBlock Text="Мой профиль" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock TextAlignment="Center" x:Name="TBDayText" FontSize="16" FontWeight="Bold" Text="Доброе утро/день/вечер"/>
+                <TextBlock TextAlignment="Center" x:Name="TBUserName" FontSize="16" FontWeight="Bold"/>
+                <Button Style="{DynamicResource ButtonStyleOrganizer}"
+                        Width="250"
+                        Height="80"
+                        Padding="20 0"
+                        Margin="0 8 0 0">
+                    <TextBlock Text="Мероприятия" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+                <Button Style="{DynamicResource ButtonStyleOrganizer}"
+                        Width="250"
+                        Height="80"
+                        Padding="20 0"
+                        Margin="0 8 0 0">
+                    <TextBlock Text="Участники" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+                <Button Style="{DynamicResource ButtonStyleOrganizer}"
+                        Width="250"
+                        Height="80"
+                        Padding="20 0"
+                        Margin="0 8 0 0">
+                    <TextBlock Text="Жюри" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
