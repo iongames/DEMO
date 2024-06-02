@@ -86,6 +86,8 @@ namespace DEMO.Windows
         {
             OrganizerWindow organizerWindow = new OrganizerWindow(user);
             organizerWindow.Show();
+
+            this.Close();
         }
 
         private void CheckEvent_Checked(object sender, RoutedEventArgs e)
