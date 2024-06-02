@@ -27,9 +27,17 @@ namespace DEMO
         public MainWindow()
         {
             InitializeComponent();
+            Cities allCities = new Cities();
+            allCities.CityID = -2;
+            allCities.CityName = "Все";
 
             ListView.ItemsSource = EFClass.Context.Events.ToList();
 
+            List<Cities> list = EFClass.Context.Cities.ToList();
+            list.Insert(0, allCities);
+
+            CBDirection.ItemsSource = list;
+            CBDirection.SelectedIndex = 0;
         }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
@@ -40,20 +48,28 @@ namespace DEMO
             this.Close();
         }
 
-        private void ButtonSortDirection_Click(object sender, RoutedEventArgs e)
-        {
-            listSortDirection = listSortDirection != ListSortDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+        //private void ButtonSortDate_Click(object sender, RoutedEventArgs e)
+        //{
+        //    listSortDirection = listSortDirection != ListSortDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+        //
+        //    ListView.Items.SortDescriptions.Clear();
+        //    ListView.Items.SortDescriptions.Add(new SortDescription("EventDate", listSortDirection));
+        //}
 
-            ListView.Items.SortDescriptions.Clear();
-            ListView.Items.SortDescriptions.Add(new SortDescription("Direction.DirectionName", listSortDirection));
+        private void CBDirection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Cities city = CBDirection.SelectedItem as Cities;
+            DateTime? date = DPDate.SelectedDate;
+
+            ListView.ItemsSource = EFClass.Context.Events.ToList().Where(i => (city.CityID == -2 || i.CityID == city.CityID) && (date == null || i.EventDate == date));
         }
 
-        private void ButtonSortDate_Click(object sender, RoutedEventArgs e)
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            listSortDirection = listSortDirection != ListSortDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;
+            Cities city = CBDirection.SelectedItem as Cities;
+            DateTime? date = DPDate.SelectedDate;
 
-            ListView.Items.SortDescriptions.Clear();
-            ListView.Items.SortDescriptions.Add(new SortDescription("EventDate", listSortDirection));
+            ListView.ItemsSource = EFClass.Context.Events.ToList().Where(i => (city.CityID == -2 || i.CityID == city.CityID) && (date == null || i.EventDate == date));
         }
     }
 }
