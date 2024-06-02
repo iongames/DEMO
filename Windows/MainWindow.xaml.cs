@@ -40,7 +40,7 @@ namespace DEMO
             CBDirection.ItemsSource = list;
             CBDirection.SelectedIndex = 0;
 
-            RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF");
+            RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF1");
 
             if (auth.GetValue("USER_ID") != null )
             {

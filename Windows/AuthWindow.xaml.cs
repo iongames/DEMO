@@ -24,9 +24,23 @@ namespace DEMO.Windows
     {
         DispatcherTimer timer = new DispatcherTimer();
 
+        private void generateCaptcha()
+        {
+            Random random = new Random();
+            TOne.Text = random.Next(9).ToString();
+            TOne.Margin = new Thickness(random.Next(9), random.Next(9), random.Next(9), random.Next(9));
+            TTwo.Text = random.Next(9).ToString();
+            TTwo.Margin = new Thickness(random.Next(9), random.Next(9), random.Next(9), random.Next(9));
+            TThree.Text = random.Next(9).ToString();
+            TThree.Margin = new Thickness(random.Next(9), random.Next(9), random.Next(9), random.Next(9));
+            TFour.Text = random.Next(9).ToString();
+            TFour.Margin = new Thickness(random.Next(9), random.Next(9), random.Next(9), random.Next(9));
+        }
+
         public AuthWindow()
         {
             InitializeComponent();
+            generateCaptcha();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -48,7 +62,13 @@ namespace DEMO.Windows
             string password = TBPassword.Text;
             int.TryParse(TBNumber.Text, out number);
 
-            RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF");
+
+            if (TBCaptcha.Text != $"{TOne.Text}{TTwo.Text}{TThree.Text}{TFour.Text}")
+            {
+                MessageBox.Show("Неправильная каптча!");
+                generateCaptcha();
+                return;
+            }
 
             if (timer.IsEnabled == false)
             {
@@ -56,6 +76,7 @@ namespace DEMO.Windows
 
                 if (user != null)
                 {
+                    RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF");
                     switch (user.RoleID)
                     {
                         case 1:
@@ -85,6 +106,7 @@ namespace DEMO.Windows
                 } else
                 {
                     MessageBox.Show("Неправильные логин и пароль!");
+                    generateCaptcha();
                 }
 
                 timer.Tick += new EventHandler(timer_Tick);
@@ -93,6 +115,7 @@ namespace DEMO.Windows
             } else
             {
                 MessageBox.Show("Подождите 10 секунд!");
+                generateCaptcha();
             }
         }
     }

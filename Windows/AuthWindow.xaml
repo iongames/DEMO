@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DEMO.Windows"
         mc:Ignorable="d"
-        Title="AuthWindow" Height="450" Width="800">
+        Title="AuthWindow" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
@@ -18,6 +18,26 @@
             <TextBlock Text="Пароль" Margin="8 0"/>
             <TextBox x:Name="TBPassword" Height="40" Margin="8" VerticalContentAlignment="Center"/>
             <Button x:Name="AuthButton" Content="Войти" Height="40" Margin="8" Click="AuthButton_Click"/>
+            <TextBlock Text="Каптча" Margin="8"/>
+            <Border Margin="8 0" Width="100" Height="40" HorizontalAlignment="Left">
+                <Border.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF8A8A8A" Offset="0.413"/>
+                        <GradientStop Color="#FFDADADA" Offset="1"/>
+                        <GradientStop Color="DarkGray" Offset="0.237"/>
+                        <GradientStop Color="Black" Offset="0.76"/>
+                        <GradientStop Color="#FF3E3E3E" Offset="0.143"/>
+                        <GradientStop Color="#FFD4D4D4" Offset="0.057"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="TOne" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock x:Name="TTwo" Text="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock x:Name="TThree" Text="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock x:Name="TFour" Text="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                </StackPanel>
+            </Border>
+            <TextBox x:Name="TBCaptcha" Height="40" Margin="8" VerticalContentAlignment="Center"/>
         </StackPanel>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
