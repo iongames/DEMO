@@ -1,5 +1,6 @@
 ﻿using DEMO.Database;
 using DEMO.Windows;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,41 @@ namespace DEMO
 
             CBDirection.ItemsSource = list;
             CBDirection.SelectedIndex = 0;
+
+            RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF");
+
+            if (auth.GetValue("USER_ID") != null )
+            {
+                int? userID = auth.GetValue("USER_ID") as int?;
+                User user = EFClass.Context.User.ToList().FirstOrDefault(u => u.UserID == userID);
+
+                if (user != null)
+                {
+                    switch (user.RoleID)
+                    {
+                        case 1:
+                            ParticipantWindow participantWindow = new ParticipantWindow();
+                            participantWindow.Show();
+                            break;
+                        case 2:
+                            OrganizerWindow organizerWindow = new OrganizerWindow(user);
+                            organizerWindow.Show();
+                            break;
+                        case 3:
+                            ModeratorWindow moderatorWindow = new ModeratorWindow();
+                            moderatorWindow.Show();
+                            break;
+                        case 4:
+                            JuryWindow juryWindow = new JuryWindow();
+                            juryWindow.Show();
+                            break;
+                        default:
+                            break;
+                    }
+
+                    this.Close();
+                }
+            }
         }
 
         private void AuthButton_Click(object sender, RoutedEventArgs e)
@@ -48,6 +84,7 @@ namespace DEMO
             this.Close();
         }
 
+        // Пример сортировки по полю
         //private void ButtonSortDate_Click(object sender, RoutedEventArgs e)
         //{
         //    listSortDirection = listSortDirection != ListSortDirection.Ascending ? ListSortDirection.Ascending : ListSortDirection.Descending;

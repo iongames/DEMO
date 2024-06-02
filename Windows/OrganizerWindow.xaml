@@ -58,7 +58,7 @@
                         Width="250"
                         Height="80"
                         Padding="20 0"
-                        Margin="0 8 0 0">
+                        Margin="0 8 0 0" Click="Button_Click">
                     <TextBlock Text="Жюри" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
             </StackPanel>

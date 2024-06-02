@@ -17,14 +17,11 @@ namespace DEMO.Database
         public int OrganizerID { get; set; }
         public string OrganizerFIO { get; set; }
         public string Email { get; set; }
+        public string Password { get; set; }
         public System.DateTime OrganizerBirthday { get; set; }
         public int CountryID { get; set; }
-        public string OrganizerPhone { get; set; }
-        public string Password { get; set; }
-        public string Photo { get; set; }
+        public string OrgnizerPhone { get; set; }
+        public string OrgnizerPhoto { get; set; }
         public string GenderCode { get; set; }
-    
-        public virtual Countries Countries { get; set; }
-        public virtual Genders Genders { get; set; }
     }
 }

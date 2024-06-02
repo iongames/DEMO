@@ -20,14 +20,15 @@ namespace DEMO.Windows
     /// </summary>
     public partial class OrganizerWindow : Window
     { 
-        private Organizers organizer;
+        private User user;
 
-        public OrganizerWindow(Organizers organizer)
+        public OrganizerWindow(User organizer)
         {
             InitializeComponent();
+            user = organizer;
 
-            UserImage.Source = new BitmapImage(new Uri(organizer.Photo, UriKind.Relative));
-            TBUserName.Text = organizer.OrganizerFIO;
+            UserImage.Source = new BitmapImage(new Uri(organizer.UserPhoto, UriKind.Relative));
+            TBUserName.Text = $"{(organizer.GenderCode == "м" ? "Mrs" : "Ms")} {organizer.UserFIO}";
 
             string dayText = "";
             if (DateTime.Now.Hour >= 9 && DateTime.Now.Hour <= 11)
@@ -43,6 +44,14 @@ namespace DEMO.Windows
             }
 
             TBDayText.Text = dayText;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow createWindow = new CreateWindow(user);
+            createWindow.Show();
+
+            this.Close();
         }
     }
 }

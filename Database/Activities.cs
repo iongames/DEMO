@@ -16,11 +16,11 @@ namespace DEMO.Database
     {
         public int ActivityID { get; set; }
         public int EventID { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public int DaysCount { get; set; }
+        public System.DateTime ActivityDateStart { get; set; }
+        public int ActivityDaysCount { get; set; }
         public string ActivityName { get; set; }
-        public int Day { get; set; }
-        public string StartTime { get; set; }
+        public int ActivityDay { get; set; }
+        public string ActivityTimeStart { get; set; }
         public int ModeratorID { get; set; }
         public Nullable<int> JuryID1 { get; set; }
         public Nullable<int> JuryID2 { get; set; }
@@ -30,12 +30,12 @@ namespace DEMO.Database
         public Nullable<int> WinnerID { get; set; }
     
         public virtual Events Events { get; set; }
-        public virtual Jury Jury { get; set; }
-        public virtual Jury Jury1 { get; set; }
-        public virtual Jury Jury2 { get; set; }
-        public virtual Jury Jury3 { get; set; }
-        public virtual Jury Jury4 { get; set; }
-        public virtual Moderators Moderators { get; set; }
-        public virtual Participants Participants { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
+        public virtual User User2 { get; set; }
+        public virtual User User3 { get; set; }
+        public virtual User User4 { get; set; }
+        public virtual User User5 { get; set; }
+        public virtual User User6 { get; set; }
     }
 }

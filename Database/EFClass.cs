@@ -8,6 +8,6 @@ namespace DEMO.Database
 {
     internal class EFClass
     {
-        public static Entities Context { get; } = new Entities();
+        public static Demo2Entities Context { get; } = new Demo2Entities();
     }
 }

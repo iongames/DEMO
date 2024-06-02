@@ -1,0 +1,160 @@
+﻿<Window x:Class="DEMO.Windows.CreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DEMO.Windows"
+        mc:Ignorable="d"
+        Title="CreateWindow" Height="450" Width="880">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="216"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Регистрация жюри/модератора" 
+                   TextAlignment="Center" 
+                   FontSize="30" 
+                   FontWeight="Bold" Grid.ColumnSpan="4"/>
+        <TextBlock Grid.Row="1" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Id Number:" />
+        <TextBlock Grid.Row="2" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="ФИО:"/>
+        <TextBlock Grid.Row="3" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Пол:"/>
+        <TextBlock Grid.Row="4" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Роль:"/>
+        <TextBlock Grid.Row="5" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Email:"/>
+        <TextBlock Grid.Row="6" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Телефон:"/>
+        <TextBlock Grid.Row="7" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Направление:"/>
+        <TextBlock Grid.Row="9" 
+                   TextAlignment="Right"
+                   VerticalAlignment="Center"
+                   FontSize="16"
+                   Text="Мероприятие:"/>
+        <TextBox x:Name="TBIdNumber"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="8,4"
+                 Background="Gray"
+                 TextAlignment="Center"
+                 FontSize="16"
+                 FontStyle="Italic"
+                 IsReadOnly="True"/>
+        <TextBox x:Name="TBFio"
+                 Grid.Row="2"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <ComboBox x:Name="CBGender"
+                 DisplayMemberPath="GenderName"
+                 Grid.Row="3"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <ComboBox x:Name="CBRole"
+                 DisplayMemberPath="RoleName"
+                 Grid.Row="4"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <TextBox x:Name="TBEmail"
+                 Grid.Row="5"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <TextBox x:Name="TBPhone"
+                 Grid.Row="6"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <ComboBox x:Name="CBDirection"
+                 DisplayMemberPath="DirectionName"
+                 Grid.Row="7"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <CheckBox Content="Прикрепить к мероприятию"
+                  x:Name="CheckEvent"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Right"
+                  Margin="8 0"
+                  Grid.Row="8"
+                  Grid.Column="1" Checked="CheckEvent_Checked"/>
+        <ComboBox x:Name="CBEvent"
+                 DisplayMemberPath="EventName"
+                 Grid.Row="9"
+                 Grid.Column="1"
+                 Margin="8,4"/>
+        <Border Width="200" Margin="8" HorizontalAlignment="Right" Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1"/>
+        <TextBlock FontSize="16"
+                   VerticalAlignment="Center"
+                   Grid.Row="7"
+                   Grid.Column="2"
+                   TextAlignment="Right"
+                   Text="Пароль:"/>
+        <TextBlock FontSize="16"
+           VerticalAlignment="Center"
+           Grid.Row="8"
+           Grid.Column="2"
+           TextAlignment="Right"
+           Text="Повтор пароля:"/>
+        <TextBox x:Name="TBPassword"
+                 Grid.Row="7"
+                 Grid.Column="4"
+                 HorizontalAlignment="Right"
+                 Width="200"
+                 Margin="8,4"/>
+        <TextBox x:Name="TBRepeatPassword"
+                 Grid.Row="8"
+                 Grid.Column="4"
+                 HorizontalAlignment="Right"
+                 Width="200"
+                 Margin="8,4"/>
+        <CheckBox Content="Видимый пароль"
+                  x:Name="CheckShowPassword"
+                  VerticalAlignment="Center"
+                  Margin="8 0"
+                  Grid.Row="9"
+                  Grid.Column="3" Checked="CheckShowPassword_Checked"/>
+        <StackPanel Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                 Grid.Row="10"
+                 Grid.Column="3">
+            <Button x:Name="ButtonOk" Margin="4" Style="{DynamicResource ButtonStyleOrganizer}" Height="25" Width="80" Content="Ok" Click="ButtonOk_Click"/>
+            <Button x:Name="ButtonCancel" Margin="4" Style="{DynamicResource ButtonStyleOrganizer}" Height="25" Width="80" Content="Отмена" Click="ButtonCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

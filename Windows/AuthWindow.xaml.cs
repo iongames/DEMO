@@ -1,4 +1,5 @@
 ﻿using DEMO.Database;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace DEMO.Windows
 {
@@ -20,9 +22,16 @@ namespace DEMO.Windows
     /// </summary>
     public partial class AuthWindow : Window
     {
+        DispatcherTimer timer = new DispatcherTimer();
+
         public AuthWindow()
         {
             InitializeComponent();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            timer.Stop();
         }
 
         private void MainButton_Click(object sender, RoutedEventArgs e)
@@ -39,50 +48,51 @@ namespace DEMO.Windows
             string password = TBPassword.Text;
             int.TryParse(TBNumber.Text, out number);
 
-            Participants participant = EFClass.Context.Participants.FirstOrDefault(p => p.ParticipantID == number && p.Password == password);
+            RegistryKey auth = Registry.CurrentUser.CreateSubKey("DEMO_WPF");
 
-            if (participant != null)
+            if (timer.IsEnabled == false)
             {
-                ParticipantWindow participantWindow = new ParticipantWindow();  
-                participantWindow.Show();
+                User user = EFClass.Context.User.FirstOrDefault(p => p.UserID == number && p.Pasword == password);
 
-                this.Close();
-            } else
-            {
-                Moderators moderator = EFClass.Context.Moderators.FirstOrDefault(p => p.ModeratorID == number && p.Password == password);
-
-                if (moderator != null)
+                if (user != null)
                 {
-                    ModeratorWindow moderatorWindow = new ModeratorWindow();
-                    moderatorWindow.Show();
+                    switch (user.RoleID)
+                    {
+                        case 1:
+                            ParticipantWindow participantWindow = new ParticipantWindow();
+                            participantWindow.Show();
+                            break;
+                        case 2:
+                            OrganizerWindow organizerWindow = new OrganizerWindow(user);
+                            organizerWindow.Show();
+                            break;
+                        case 3:
+                            ModeratorWindow moderatorWindow = new ModeratorWindow();
+                            moderatorWindow.Show();
+                            break;
+                        case 4:
+                            JuryWindow juryWindow = new JuryWindow();
+                            juryWindow.Show();
+                            break;
+                        default:
+                            break;
+                    }
+
+                    auth.SetValue("USER_ID", user.UserID);
+                    auth.Close();
 
                     this.Close();
                 } else
                 {
-                    Organizers organizer = EFClass.Context.Organizers.FirstOrDefault(p => p.OrganizerID == number && p.Password == password);
-
-                    if (organizer != null) {
-                        OrganizerWindow organizerWindow = new OrganizerWindow(organizer);
-                        organizerWindow.Show();
-
-                        this.Close();
-                    }
-                    else
-                    {
-                        Jury jury = EFClass.Context.Jury.FirstOrDefault(p => p.JuryID == number && p.Password == password);
-
-                        if (jury != null) {
-                            JuryWindow juryWindow = new JuryWindow();
-                            juryWindow.Show();
-
-                            this.Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Неправильные логин и пароль!");
-                        }
-                    }
+                    MessageBox.Show("Неправильные логин и пароль!");
                 }
+
+                timer.Tick += new EventHandler(timer_Tick);
+                timer.Interval = new TimeSpan(0, 0, 10);
+                timer.Start();
+            } else
+            {
+                MessageBox.Show("Подождите 10 секунд!");
             }
         }
     }

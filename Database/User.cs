@@ -12,28 +12,32 @@ namespace DEMO.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Jury
+    public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Jury()
+        public User()
         {
             this.Activities = new HashSet<Activities>();
             this.Activities1 = new HashSet<Activities>();
             this.Activities2 = new HashSet<Activities>();
             this.Activities3 = new HashSet<Activities>();
             this.Activities4 = new HashSet<Activities>();
+            this.Activities5 = new HashSet<Activities>();
+            this.Activities6 = new HashSet<Activities>();
         }
     
-        public int JuryID { get; set; }
-        public string JuryFIO { get; set; }
-        public string GenderCode { get; set; }
+        public int UserID { get; set; }
+        public string UserFIO { get; set; }
         public string Email { get; set; }
-        public System.DateTime JuryBirthday { get; set; }
-        public int CountryID { get; set; }
-        public string JuryPhone { get; set; }
-        public int DirectionID { get; set; }
-        public string Password { get; set; }
-        public string Photo { get; set; }
+        public string Pasword { get; set; }
+        public System.DateTime UserBirthday { get; set; }
+        public Nullable<int> CountryID { get; set; }
+        public string UserPhone { get; set; }
+        public string UserPhoto { get; set; }
+        public string GenderCode { get; set; }
+        public int RoleID { get; set; }
+        public Nullable<int> EventID { get; set; }
+        public Nullable<int> DirectionID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activities> Activities { get; set; }
@@ -45,8 +49,14 @@ namespace DEMO.Database
         public virtual ICollection<Activities> Activities3 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activities> Activities4 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activities> Activities5 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activities> Activities6 { get; set; }
         public virtual Countries Countries { get; set; }
         public virtual Directions Directions { get; set; }
+        public virtual Events Events { get; set; }
         public virtual Genders Genders { get; set; }
+        public virtual Role Role { get; set; }
     }
 }

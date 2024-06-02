@@ -18,13 +18,13 @@ namespace DEMO.Database
         public Events()
         {
             this.Activities = new HashSet<Activities>();
-            this.Moderators = new HashSet<Moderators>();
+            this.User = new HashSet<User>();
         }
     
         public int EventID { get; set; }
         public string EventName { get; set; }
         public System.DateTime EventDate { get; set; }
-        public int Days { get; set; }
+        public int EventDays { get; set; }
         public int CityID { get; set; }
         public string EventPhoto { get; set; }
     
@@ -32,6 +32,6 @@ namespace DEMO.Database
         public virtual ICollection<Activities> Activities { get; set; }
         public virtual Cities Cities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Moderators> Moderators { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

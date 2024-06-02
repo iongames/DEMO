@@ -4,18 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Хранилище DEMOModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="Хранилище DemoExamModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Activities">
           <Key>
             <PropertyRef Name="ActivityID" />
           </Key>
           <Property Name="ActivityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventID" Type="int" Nullable="false" />
-          <Property Name="StartDate" Type="date" Nullable="false" />
-          <Property Name="DaysCount" Type="int" Nullable="false" />
-          <Property Name="ActivityName" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Day" Type="int" Nullable="false" />
-          <Property Name="StartTime" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="ActivityDateStart" Type="date" Nullable="false" />
+          <Property Name="ActivityDaysCount" Type="int" Nullable="false" />
+          <Property Name="ActivityName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ActivityDay" Type="int" Nullable="false" />
+          <Property Name="ActivityTimeStart" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="ModeratorID" Type="int" Nullable="false" />
           <Property Name="JuryID1" Type="int" />
           <Property Name="JuryID2" Type="int" />
@@ -28,8 +28,8 @@
           <Key>
             <PropertyRef Name="CityID" />
           </Key>
-          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CityName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="Countries">
           <Key>
@@ -37,27 +37,27 @@
           </Key>
           <Property Name="CountryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CountryName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="CountryNameEN" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Code" Type="nchar" MaxLength="2" Nullable="false" />
-          <Property Name="Code2" Type="int" Nullable="false" />
+          <Property Name="CountryEnName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CountryCode" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="CountryCode2" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Directions">
           <Key>
             <PropertyRef Name="DirectionID" />
           </Key>
           <Property Name="DirectionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DirectionName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DirectionName" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="EventID" />
           </Key>
           <Property Name="EventID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EventName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="EventDate" Type="date" Nullable="false" />
-          <Property Name="Days" Type="int" Nullable="false" />
+          <Property Name="EventDays" Type="int" Nullable="false" />
           <Property Name="CityID" Type="int" Nullable="false" />
-          <Property Name="EventPhoto" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="EventPhoto" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Genders">
           <Key>
@@ -66,64 +66,26 @@
           <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="GenderName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Jury">
-          <Key>
-            <PropertyRef Name="JuryID" />
-          </Key>
-          <Property Name="JuryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="JuryFIO" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="JuryBirthday" Type="date" Nullable="false" />
-          <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="JuryPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="DirectionID" Type="int" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Moderators">
-          <Key>
-            <PropertyRef Name="ModeratorID" />
-          </Key>
-          <Property Name="ModeratorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ModeratorFIO" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ModeratorBirthday" Type="date" Nullable="false" />
-          <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="ModeratorPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="DirectionID" Type="int" Nullable="false" />
-          <Property Name="EventID" Type="int" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Organizers">
           <Key>
             <PropertyRef Name="OrganizerID" />
           </Key>
           <Property Name="OrganizerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OrganizerFIO" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="OrganizerFIO" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="OrganizerBirthday" Type="date" Nullable="false" />
           <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="OrganizerPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OrgnizerPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrgnizerPhoto" Type="nvarchar(max)" Nullable="false" />
           <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
         </EntityType>
-        <EntityType Name="Participants">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ParticipantID" />
+            <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="ParticipantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ParticipantFIO" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
-          <Property Name="ParticipantBirthday" Type="date" Nullable="false" />
-          <Property Name="CountryID" Type="int" Nullable="false" />
-          <Property Name="ParticipantPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -134,6 +96,23 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserFIO" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Pasword" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UserBirthday" Type="date" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="UserPhone" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="UserPhoto" Type="nvarchar(max)" />
+          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+          <Property Name="EventID" Type="int" />
+          <Property Name="DirectionID" Type="int" />
         </EntityType>
         <Association Name="FK_Activities_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="1">
@@ -149,86 +128,84 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="ModeratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury1">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User2">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury2">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User3">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID3" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury3">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User4">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID4" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury4">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User5">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID5" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Moderators">
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="1" />
+        <Association Name="FK_Activities_User6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Moderators">
-              <PropertyRef Name="ModeratorID" />
-            </Principal>
-            <Dependent Role="Activities">
-              <PropertyRef Name="ModeratorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Activities_Participants">
-          <End Role="Participants" Type="Self.Participants" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Participants">
-              <PropertyRef Name="ParticipantID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="WinnerID" />
@@ -249,157 +226,73 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jury_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
+        <Association Name="FK_User_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="CountryID" />
             </Principal>
-            <Dependent Role="Jury">
+            <Dependent Role="User">
               <PropertyRef Name="CountryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jury_Directions">
-          <End Role="Directions" Type="Self.Directions" Multiplicity="1">
+        <Association Name="FK_User_Directions">
+          <End Role="Directions" Type="Self.Directions" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Directions">
               <PropertyRef Name="DirectionID" />
             </Principal>
-            <Dependent Role="Jury">
+            <Dependent Role="User">
               <PropertyRef Name="DirectionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jury_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
+        <Association Name="FK_User_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
-            </Principal>
-            <Dependent Role="Jury">
-              <PropertyRef Name="GenderCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Moderators_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Moderators">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Moderators_Directions">
-          <End Role="Directions" Type="Self.Directions" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Directions">
-              <PropertyRef Name="DirectionID" />
-            </Principal>
-            <Dependent Role="Moderators">
-              <PropertyRef Name="DirectionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Moderators_Events">
-          <End Role="Events" Type="Self.Events" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
               <PropertyRef Name="EventID" />
             </Principal>
-            <Dependent Role="Moderators">
+            <Dependent Role="User">
               <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Moderators_Genders">
+        <Association Name="FK_User_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genders">
               <PropertyRef Name="GenderCode" />
             </Principal>
-            <Dependent Role="Moderators">
+            <Dependent Role="User">
               <PropertyRef Name="GenderCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Organizers_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Organizers" Type="Self.Organizers" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
             </Principal>
-            <Dependent Role="Organizers">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Organizers_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Organizers" Type="Self.Organizers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
-            </Principal>
-            <Dependent Role="Organizers">
-              <PropertyRef Name="GenderCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Participants_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Participants">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Participants_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
-            </Principal>
-            <Dependent Role="Participants">
-              <PropertyRef Name="GenderCode" />
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -434,114 +327,90 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <EntityContainer Name="Хранилище DEMOModelContainer">
+        <EntityContainer Name="Хранилище DemoExamModelContainer">
           <EntitySet Name="Activities" EntityType="Self.Activities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Directions" EntityType="Self.Directions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Jury" EntityType="Self.Jury" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Moderators" EntityType="Self.Moderators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizers" EntityType="Self.Organizers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Participants" EntityType="Self.Participants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Activities_Events" Association="Self.FK_Activities_Events">
             <End Role="Events" EntitySet="Events" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury" Association="Self.FK_Activities_Jury">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User" Association="Self.FK_Activities_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury1" Association="Self.FK_Activities_Jury1">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User1" Association="Self.FK_Activities_User1">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury2" Association="Self.FK_Activities_Jury2">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User2" Association="Self.FK_Activities_User2">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury3" Association="Self.FK_Activities_Jury3">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User3" Association="Self.FK_Activities_User3">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury4" Association="Self.FK_Activities_Jury4">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User4" Association="Self.FK_Activities_User4">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Moderators" Association="Self.FK_Activities_Moderators">
-            <End Role="Moderators" EntitySet="Moderators" />
+          <AssociationSet Name="FK_Activities_User5" Association="Self.FK_Activities_User5">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Participants" Association="Self.FK_Activities_Participants">
-            <End Role="Participants" EntitySet="Participants" />
+          <AssociationSet Name="FK_Activities_User6" Association="Self.FK_Activities_User6">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
           <AssociationSet Name="FK_Events_Cities" Association="Self.FK_Events_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jury_Countries" Association="Self.FK_Jury_Countries">
+          <AssociationSet Name="FK_User_Countries" Association="Self.FK_User_Countries">
             <End Role="Countries" EntitySet="Countries" />
-            <End Role="Jury" EntitySet="Jury" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jury_Directions" Association="Self.FK_Jury_Directions">
+          <AssociationSet Name="FK_User_Directions" Association="Self.FK_User_Directions">
             <End Role="Directions" EntitySet="Directions" />
-            <End Role="Jury" EntitySet="Jury" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jury_Genders" Association="Self.FK_Jury_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Jury" EntitySet="Jury" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Countries" Association="Self.FK_Moderators_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Moderators" EntitySet="Moderators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Directions" Association="Self.FK_Moderators_Directions">
-            <End Role="Directions" EntitySet="Directions" />
-            <End Role="Moderators" EntitySet="Moderators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Events" Association="Self.FK_Moderators_Events">
+          <AssociationSet Name="FK_User_Events" Association="Self.FK_User_Events">
             <End Role="Events" EntitySet="Events" />
-            <End Role="Moderators" EntitySet="Moderators" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Genders" Association="Self.FK_Moderators_Genders">
+          <AssociationSet Name="FK_User_Genders" Association="Self.FK_User_Genders">
             <End Role="Genders" EntitySet="Genders" />
-            <End Role="Moderators" EntitySet="Moderators" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Organizers_Countries" Association="Self.FK_Organizers_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Organizers" EntitySet="Organizers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Organizers_Genders" Association="Self.FK_Organizers_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Organizers" EntitySet="Organizers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participants_Countries" Association="Self.FK_Participants_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Participants" EntitySet="Participants" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participants_Genders" Association="Self.FK_Participants_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Participants" EntitySet="Participants" />
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DEMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DemoExamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Activities">
           <Key>
             <PropertyRef Name="ActivityID" />
           </Key>
           <Property Name="ActivityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="DaysCount" Type="Int32" Nullable="false" />
-          <Property Name="ActivityName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Day" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityDateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ActivityDaysCount" Type="Int32" Nullable="false" />
+          <Property Name="ActivityName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ActivityDay" Type="Int32" Nullable="false" />
+          <Property Name="ActivityTimeStart" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ModeratorID" Type="Int32" Nullable="false" />
           <Property Name="JuryID1" Type="Int32" />
           <Property Name="JuryID2" Type="Int32" />
@@ -550,20 +419,20 @@
           <Property Name="JuryID5" Type="Int32" />
           <Property Name="WinnerID" Type="Int32" />
           <NavigationProperty Name="Events" Relationship="Self.FK_Activities_Events" FromRole="Activities" ToRole="Events" />
-          <NavigationProperty Name="Jury" Relationship="Self.FK_Activities_Jury" FromRole="Activities" ToRole="Jury" />
-          <NavigationProperty Name="Jury1" Relationship="Self.FK_Activities_Jury1" FromRole="Activities" ToRole="Jury" />
-          <NavigationProperty Name="Jury2" Relationship="Self.FK_Activities_Jury2" FromRole="Activities" ToRole="Jury" />
-          <NavigationProperty Name="Jury3" Relationship="Self.FK_Activities_Jury3" FromRole="Activities" ToRole="Jury" />
-          <NavigationProperty Name="Jury4" Relationship="Self.FK_Activities_Jury4" FromRole="Activities" ToRole="Jury" />
-          <NavigationProperty Name="Moderators" Relationship="Self.FK_Activities_Moderators" FromRole="Activities" ToRole="Moderators" />
-          <NavigationProperty Name="Participants" Relationship="Self.FK_Activities_Participants" FromRole="Activities" ToRole="Participants" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Activities_User" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_Activities_User1" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User2" Relationship="Self.FK_Activities_User2" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User3" Relationship="Self.FK_Activities_User3" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User4" Relationship="Self.FK_Activities_User4" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User5" Relationship="Self.FK_Activities_User5" FromRole="Activities" ToRole="User" />
+          <NavigationProperty Name="User6" Relationship="Self.FK_Activities_User6" FromRole="Activities" ToRole="User" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="CityID" />
           </Key>
-          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CityName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="CityName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Events" Relationship="Self.FK_Events_Cities" FromRole="Cities" ToRole="Events" />
         </EntityType>
         <EntityType Name="Countries">
@@ -572,36 +441,32 @@
           </Key>
           <Property Name="CountryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CountryName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="CountryNameEN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Code" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Code2" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Jury" Relationship="Self.FK_Jury_Countries" FromRole="Countries" ToRole="Jury" />
-          <NavigationProperty Name="Moderators" Relationship="Self.FK_Moderators_Countries" FromRole="Countries" ToRole="Moderators" />
-          <NavigationProperty Name="Organizers" Relationship="Self.FK_Organizers_Countries" FromRole="Countries" ToRole="Organizers" />
-          <NavigationProperty Name="Participants" Relationship="Self.FK_Participants_Countries" FromRole="Countries" ToRole="Participants" />
+          <Property Name="CountryEnName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CountryCode2" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Countries" FromRole="Countries" ToRole="User" />
         </EntityType>
         <EntityType Name="Directions">
           <Key>
             <PropertyRef Name="DirectionID" />
           </Key>
           <Property Name="DirectionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DirectionName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Jury" Relationship="Self.FK_Jury_Directions" FromRole="Directions" ToRole="Jury" />
-          <NavigationProperty Name="Moderators" Relationship="Self.FK_Moderators_Directions" FromRole="Directions" ToRole="Moderators" />
+          <Property Name="DirectionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Directions" FromRole="Directions" ToRole="User" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
             <PropertyRef Name="EventID" />
           </Key>
           <Property Name="EventID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EventName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Days" Type="Int32" Nullable="false" />
+          <Property Name="EventDays" Type="Int32" Nullable="false" />
           <Property Name="CityID" Type="Int32" Nullable="false" />
+          <Property Name="EventPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Activities" Relationship="Self.FK_Activities_Events" FromRole="Events" ToRole="Activities" />
           <NavigationProperty Name="Cities" Relationship="Self.FK_Events_Cities" FromRole="Events" ToRole="Cities" />
-          <NavigationProperty Name="Moderators" Relationship="Self.FK_Moderators_Events" FromRole="Events" ToRole="Moderators" />
-          <Property Name="EventPhoto" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Events" FromRole="Events" ToRole="User" />
         </EntityType>
         <EntityType Name="Genders">
           <Key>
@@ -609,87 +474,29 @@
           </Key>
           <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Jury" Relationship="Self.FK_Jury_Genders" FromRole="Genders" ToRole="Jury" />
-          <NavigationProperty Name="Moderators" Relationship="Self.FK_Moderators_Genders" FromRole="Genders" ToRole="Moderators" />
-          <NavigationProperty Name="Organizers" Relationship="Self.FK_Organizers_Genders" FromRole="Genders" ToRole="Organizers" />
-          <NavigationProperty Name="Participants" Relationship="Self.FK_Participants_Genders" FromRole="Genders" ToRole="Participants" />
-        </EntityType>
-        <EntityType Name="Jury">
-          <Key>
-            <PropertyRef Name="JuryID" />
-          </Key>
-          <Property Name="JuryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="JuryFIO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="JuryBirthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="JuryPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DirectionID" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Activities" Relationship="Self.FK_Activities_Jury" FromRole="Jury" ToRole="Activities" />
-          <NavigationProperty Name="Activities1" Relationship="Self.FK_Activities_Jury1" FromRole="Jury" ToRole="Activities" />
-          <NavigationProperty Name="Activities2" Relationship="Self.FK_Activities_Jury2" FromRole="Jury" ToRole="Activities" />
-          <NavigationProperty Name="Activities3" Relationship="Self.FK_Activities_Jury3" FromRole="Jury" ToRole="Activities" />
-          <NavigationProperty Name="Activities4" Relationship="Self.FK_Activities_Jury4" FromRole="Jury" ToRole="Activities" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK_Jury_Countries" FromRole="Jury" ToRole="Countries" />
-          <NavigationProperty Name="Directions" Relationship="Self.FK_Jury_Directions" FromRole="Jury" ToRole="Directions" />
-          <NavigationProperty Name="Genders" Relationship="Self.FK_Jury_Genders" FromRole="Jury" ToRole="Genders" />
-        </EntityType>
-        <EntityType Name="Moderators">
-          <Key>
-            <PropertyRef Name="ModeratorID" />
-          </Key>
-          <Property Name="ModeratorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModeratorFIO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ModeratorBirthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="ModeratorPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="DirectionID" Type="Int32" Nullable="false" />
-          <Property Name="EventID" Type="Int32" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Activities" Relationship="Self.FK_Activities_Moderators" FromRole="Moderators" ToRole="Activities" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK_Moderators_Countries" FromRole="Moderators" ToRole="Countries" />
-          <NavigationProperty Name="Directions" Relationship="Self.FK_Moderators_Directions" FromRole="Moderators" ToRole="Directions" />
-          <NavigationProperty Name="Events" Relationship="Self.FK_Moderators_Events" FromRole="Moderators" ToRole="Events" />
-          <NavigationProperty Name="Genders" Relationship="Self.FK_Moderators_Genders" FromRole="Moderators" ToRole="Genders" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Genders" FromRole="Genders" ToRole="User" />
         </EntityType>
         <EntityType Name="Organizers">
           <Key>
             <PropertyRef Name="OrganizerID" />
           </Key>
           <Property Name="OrganizerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OrganizerFIO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrganizerFIO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="OrganizerBirthday" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="OrganizerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrgnizerPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrgnizerPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK_Organizers_Countries" FromRole="Organizers" ToRole="Countries" />
-          <NavigationProperty Name="Genders" Relationship="Self.FK_Organizers_Genders" FromRole="Organizers" ToRole="Genders" />
         </EntityType>
-        <EntityType Name="Participants">
+        <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="ParticipantID" />
+            <PropertyRef Name="RoleID" />
           </Key>
-          <Property Name="ParticipantID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ParticipantFIO" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ParticipantBirthday" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="CountryID" Type="Int32" Nullable="false" />
-          <Property Name="ParticipantPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Activities" Relationship="Self.FK_Activities_Participants" FromRole="Participants" ToRole="Activities" />
-          <NavigationProperty Name="Countries" Relationship="Self.FK_Participants_Countries" FromRole="Participants" ToRole="Countries" />
-          <NavigationProperty Name="Genders" Relationship="Self.FK_Participants_Genders" FromRole="Participants" ToRole="Genders" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -700,6 +507,35 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserFIO" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pasword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserBirthday" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="UserPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserPhoto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenderCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <Property Name="EventID" Type="Int32" />
+          <Property Name="DirectionID" Type="Int32" />
+          <NavigationProperty Name="Activities" Relationship="Self.FK_Activities_User" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities1" Relationship="Self.FK_Activities_User1" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities2" Relationship="Self.FK_Activities_User2" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities3" Relationship="Self.FK_Activities_User3" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities4" Relationship="Self.FK_Activities_User4" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities5" Relationship="Self.FK_Activities_User5" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Activities6" Relationship="Self.FK_Activities_User6" FromRole="User" ToRole="Activities" />
+          <NavigationProperty Name="Countries" Relationship="Self.FK_User_Countries" FromRole="User" ToRole="Countries" />
+          <NavigationProperty Name="Directions" Relationship="Self.FK_User_Directions" FromRole="User" ToRole="Directions" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_User_Events" FromRole="User" ToRole="Events" />
+          <NavigationProperty Name="Genders" Relationship="Self.FK_User_Genders" FromRole="User" ToRole="Genders" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Activities_Events">
           <End Role="Events" Type="Self.Events" Multiplicity="1">
@@ -715,86 +551,84 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Activities">
+              <PropertyRef Name="ModeratorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activities_User1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury1">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User2">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury2">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User3">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID3" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury3">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User4">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID4" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Jury4">
-          <End Role="Jury" Type="Self.Jury" Multiplicity="0..1" />
+        <Association Name="FK_Activities_User5">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Jury">
-              <PropertyRef Name="JuryID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="JuryID5" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Activities_Moderators">
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="1" />
+        <Association Name="FK_Activities_User6">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Moderators">
-              <PropertyRef Name="ModeratorID" />
-            </Principal>
-            <Dependent Role="Activities">
-              <PropertyRef Name="ModeratorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Activities_Participants">
-          <End Role="Participants" Type="Self.Participants" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Activities" Type="Self.Activities" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Participants">
-              <PropertyRef Name="ParticipantID" />
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
             </Principal>
             <Dependent Role="Activities">
               <PropertyRef Name="WinnerID" />
@@ -815,251 +649,142 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jury_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
+        <Association Name="FK_User_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
               <PropertyRef Name="CountryID" />
             </Principal>
-            <Dependent Role="Jury">
+            <Dependent Role="User">
               <PropertyRef Name="CountryID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Moderators_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
+        <Association Name="FK_User_Directions">
+          <End Role="Directions" Type="Self.Directions" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Moderators">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Organizers_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Organizers" Type="Self.Organizers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Organizers">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Participants_Countries">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Countries">
-              <PropertyRef Name="CountryID" />
-            </Principal>
-            <Dependent Role="Participants">
-              <PropertyRef Name="CountryID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Jury_Directions">
-          <End Role="Directions" Type="Self.Directions" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Directions">
               <PropertyRef Name="DirectionID" />
             </Principal>
-            <Dependent Role="Jury">
+            <Dependent Role="User">
               <PropertyRef Name="DirectionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Moderators_Directions">
-          <End Role="Directions" Type="Self.Directions" Multiplicity="1">
+        <Association Name="FK_User_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Directions">
-              <PropertyRef Name="DirectionID" />
-            </Principal>
-            <Dependent Role="Moderators">
-              <PropertyRef Name="DirectionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Moderators_Events">
-          <End Role="Events" Type="Self.Events" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Events">
               <PropertyRef Name="EventID" />
             </Principal>
-            <Dependent Role="Moderators">
+            <Dependent Role="User">
               <PropertyRef Name="EventID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Jury_Genders">
+        <Association Name="FK_User_Genders">
           <End Role="Genders" Type="Self.Genders" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Jury" Type="Self.Jury" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genders">
               <PropertyRef Name="GenderCode" />
             </Principal>
-            <Dependent Role="Jury">
+            <Dependent Role="User">
               <PropertyRef Name="GenderCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Moderators_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
+        <Association Name="FK_User_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Moderators" Type="Self.Moderators" Multiplicity="*" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
+            <Principal Role="Role">
+              <PropertyRef Name="RoleID" />
             </Principal>
-            <Dependent Role="Moderators">
-              <PropertyRef Name="GenderCode" />
+            <Dependent Role="User">
+              <PropertyRef Name="RoleID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Organizers_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Organizers" Type="Self.Organizers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
-            </Principal>
-            <Dependent Role="Organizers">
-              <PropertyRef Name="GenderCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Participants_Genders">
-          <End Role="Genders" Type="Self.Genders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Participants" Type="Self.Participants" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Genders">
-              <PropertyRef Name="GenderCode" />
-            </Principal>
-            <Dependent Role="Participants">
-              <PropertyRef Name="GenderCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Demo2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Activities" EntityType="Self.Activities" />
           <EntitySet Name="Cities" EntityType="Self.Cities" />
           <EntitySet Name="Countries" EntityType="Self.Countries" />
           <EntitySet Name="Directions" EntityType="Self.Directions" />
           <EntitySet Name="Events" EntityType="Self.Events" />
           <EntitySet Name="Genders" EntityType="Self.Genders" />
-          <EntitySet Name="Jury" EntityType="Self.Jury" />
-          <EntitySet Name="Moderators" EntityType="Self.Moderators" />
           <EntitySet Name="Organizers" EntityType="Self.Organizers" />
-          <EntitySet Name="Participants" EntityType="Self.Participants" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_Activities_Events" Association="Self.FK_Activities_Events">
             <End Role="Events" EntitySet="Events" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury" Association="Self.FK_Activities_Jury">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User" Association="Self.FK_Activities_User">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury1" Association="Self.FK_Activities_Jury1">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User1" Association="Self.FK_Activities_User1">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury2" Association="Self.FK_Activities_Jury2">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User2" Association="Self.FK_Activities_User2">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury3" Association="Self.FK_Activities_Jury3">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User3" Association="Self.FK_Activities_User3">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Jury4" Association="Self.FK_Activities_Jury4">
-            <End Role="Jury" EntitySet="Jury" />
+          <AssociationSet Name="FK_Activities_User4" Association="Self.FK_Activities_User4">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Moderators" Association="Self.FK_Activities_Moderators">
-            <End Role="Moderators" EntitySet="Moderators" />
+          <AssociationSet Name="FK_Activities_User5" Association="Self.FK_Activities_User5">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
-          <AssociationSet Name="FK_Activities_Participants" Association="Self.FK_Activities_Participants">
-            <End Role="Participants" EntitySet="Participants" />
+          <AssociationSet Name="FK_Activities_User6" Association="Self.FK_Activities_User6">
+            <End Role="User" EntitySet="User" />
             <End Role="Activities" EntitySet="Activities" />
           </AssociationSet>
           <AssociationSet Name="FK_Events_Cities" Association="Self.FK_Events_Cities">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jury_Countries" Association="Self.FK_Jury_Countries">
+          <AssociationSet Name="FK_User_Countries" Association="Self.FK_User_Countries">
             <End Role="Countries" EntitySet="Countries" />
-            <End Role="Jury" EntitySet="Jury" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Countries" Association="Self.FK_Moderators_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Moderators" EntitySet="Moderators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Organizers_Countries" Association="Self.FK_Organizers_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Organizers" EntitySet="Organizers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participants_Countries" Association="Self.FK_Participants_Countries">
-            <End Role="Countries" EntitySet="Countries" />
-            <End Role="Participants" EntitySet="Participants" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Jury_Directions" Association="Self.FK_Jury_Directions">
+          <AssociationSet Name="FK_User_Directions" Association="Self.FK_User_Directions">
             <End Role="Directions" EntitySet="Directions" />
-            <End Role="Jury" EntitySet="Jury" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Directions" Association="Self.FK_Moderators_Directions">
-            <End Role="Directions" EntitySet="Directions" />
-            <End Role="Moderators" EntitySet="Moderators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Events" Association="Self.FK_Moderators_Events">
+          <AssociationSet Name="FK_User_Events" Association="Self.FK_User_Events">
             <End Role="Events" EntitySet="Events" />
-            <End Role="Moderators" EntitySet="Moderators" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Jury_Genders" Association="Self.FK_Jury_Genders">
+          <AssociationSet Name="FK_User_Genders" Association="Self.FK_User_Genders">
             <End Role="Genders" EntitySet="Genders" />
-            <End Role="Jury" EntitySet="Jury" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Moderators_Genders" Association="Self.FK_Moderators_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Moderators" EntitySet="Moderators" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Organizers_Genders" Association="Self.FK_Organizers_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Organizers" EntitySet="Organizers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Participants_Genders" Association="Self.FK_Participants_Genders">
-            <End Role="Genders" EntitySet="Genders" />
-            <End Role="Participants" EntitySet="Participants" />
+          <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1077,11 +802,11 @@
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DEMOModel.sp_helpdiagramdefinition_Result)">
+          <FunctionImport Name="sp_helpdiagramdefinition">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DEMOModel.sp_helpdiagrams_Result)">
+          <FunctionImport Name="sp_helpdiagrams">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1092,33 +817,22 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище DEMOModelContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DemoExamModelContainer" CdmEntityContainer="Demo2Entities">
           <EntitySetMapping Name="Activities">
-            <EntityTypeMapping TypeName="DEMOModel.Activities">
+            <EntityTypeMapping TypeName="DemoExamModel.Activities">
               <MappingFragment StoreEntitySet="Activities">
                 <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="DaysCount" ColumnName="DaysCount" />
+                <ScalarProperty Name="ActivityDateStart" ColumnName="ActivityDateStart" />
+                <ScalarProperty Name="ActivityDaysCount" ColumnName="ActivityDaysCount" />
                 <ScalarProperty Name="ActivityName" ColumnName="ActivityName" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ActivityDay" ColumnName="ActivityDay" />
+                <ScalarProperty Name="ActivityTimeStart" ColumnName="ActivityTimeStart" />
                 <ScalarProperty Name="ModeratorID" ColumnName="ModeratorID" />
                 <ScalarProperty Name="JuryID1" ColumnName="JuryID1" />
                 <ScalarProperty Name="JuryID2" ColumnName="JuryID2" />
@@ -1130,7 +844,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="DEMOModel.Cities">
+            <EntityTypeMapping TypeName="DemoExamModel.Cities">
               <MappingFragment StoreEntitySet="Cities">
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="CityName" ColumnName="CityName" />
@@ -1138,18 +852,18 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
-            <EntityTypeMapping TypeName="DEMOModel.Countries">
+            <EntityTypeMapping TypeName="DemoExamModel.Countries">
               <MappingFragment StoreEntitySet="Countries">
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
-                <ScalarProperty Name="CountryNameEN" ColumnName="CountryNameEN" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Code2" ColumnName="Code2" />
+                <ScalarProperty Name="CountryEnName" ColumnName="CountryEnName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CountryCode2" ColumnName="CountryCode2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Directions">
-            <EntityTypeMapping TypeName="DEMOModel.Directions">
+            <EntityTypeMapping TypeName="DemoExamModel.Directions">
               <MappingFragment StoreEntitySet="Directions">
                 <ScalarProperty Name="DirectionID" ColumnName="DirectionID" />
                 <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
@@ -1157,90 +871,50 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Events">
-            <EntityTypeMapping TypeName="DEMOModel.Events">
+            <EntityTypeMapping TypeName="DemoExamModel.Events">
               <MappingFragment StoreEntitySet="Events">
-                <ScalarProperty Name="EventPhoto" ColumnName="EventPhoto" />
                 <ScalarProperty Name="EventID" ColumnName="EventID" />
                 <ScalarProperty Name="EventName" ColumnName="EventName" />
                 <ScalarProperty Name="EventDate" ColumnName="EventDate" />
-                <ScalarProperty Name="Days" ColumnName="Days" />
+                <ScalarProperty Name="EventDays" ColumnName="EventDays" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="EventPhoto" ColumnName="EventPhoto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genders">
-            <EntityTypeMapping TypeName="DEMOModel.Genders">
+            <EntityTypeMapping TypeName="DemoExamModel.Genders">
               <MappingFragment StoreEntitySet="Genders">
                 <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
                 <ScalarProperty Name="GenderName" ColumnName="GenderName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Jury">
-            <EntityTypeMapping TypeName="DEMOModel.Jury">
-              <MappingFragment StoreEntitySet="Jury">
-                <ScalarProperty Name="JuryID" ColumnName="JuryID" />
-                <ScalarProperty Name="JuryFIO" ColumnName="JuryFIO" />
-                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="JuryBirthday" ColumnName="JuryBirthday" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="JuryPhone" ColumnName="JuryPhone" />
-                <ScalarProperty Name="DirectionID" ColumnName="DirectionID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Moderators">
-            <EntityTypeMapping TypeName="DEMOModel.Moderators">
-              <MappingFragment StoreEntitySet="Moderators">
-                <ScalarProperty Name="ModeratorID" ColumnName="ModeratorID" />
-                <ScalarProperty Name="ModeratorFIO" ColumnName="ModeratorFIO" />
-                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ModeratorBirthday" ColumnName="ModeratorBirthday" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="ModeratorPhone" ColumnName="ModeratorPhone" />
-                <ScalarProperty Name="DirectionID" ColumnName="DirectionID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Organizers">
-            <EntityTypeMapping TypeName="DEMOModel.Organizers">
+            <EntityTypeMapping TypeName="DemoExamModel.Organizers">
               <MappingFragment StoreEntitySet="Organizers">
                 <ScalarProperty Name="OrganizerID" ColumnName="OrganizerID" />
                 <ScalarProperty Name="OrganizerFIO" ColumnName="OrganizerFIO" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="OrganizerBirthday" ColumnName="OrganizerBirthday" />
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="OrganizerPhone" ColumnName="OrganizerPhone" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="OrgnizerPhone" ColumnName="OrgnizerPhone" />
+                <ScalarProperty Name="OrgnizerPhoto" ColumnName="OrgnizerPhoto" />
                 <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Participants">
-            <EntityTypeMapping TypeName="DEMOModel.Participants">
-              <MappingFragment StoreEntitySet="Participants">
-                <ScalarProperty Name="ParticipantID" ColumnName="ParticipantID" />
-                <ScalarProperty Name="ParticipantFIO" ColumnName="ParticipantFIO" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="ParticipantBirthday" ColumnName="ParticipantBirthday" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="ParticipantPhone" ColumnName="ParticipantPhone" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Photo" ColumnName="Photo" />
-                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="DemoExamModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="DEMOModel.sysdiagrams">
+            <EntityTypeMapping TypeName="DemoExamModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1250,30 +924,31 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DEMOModel.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DEMOModel.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DEMOModel.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище DEMOModel.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DEMOModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DEMOModel.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="DEMOModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DEMOModel.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DEMOModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="DemoExamModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserFIO" ColumnName="UserFIO" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Pasword" ColumnName="Pasword" />
+                <ScalarProperty Name="UserBirthday" ColumnName="UserBirthday" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="DirectionID" ColumnName="DirectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище DemoExamModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище DemoExamModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище DemoExamModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище DemoExamModel.sp_helpdiagramdefinition" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище DemoExamModel.sp_helpdiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище DemoExamModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище DemoExamModel.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
