@@ -1,4 +1,5 @@
 ﻿using DEMO.Database;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -104,6 +105,14 @@ namespace DEMO.Windows
         private void CheckShowPassword_Checked(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            FileDialog fileDialog = new OpenFileDialog();
+            fileDialog.ShowDialog();
+
+            SImage.Source = new BitmapImage(new Uri(fileDialog.FileName));
         }
     }
 }

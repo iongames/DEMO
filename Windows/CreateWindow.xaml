@@ -137,7 +137,18 @@
                  Grid.Row="9"
                  Grid.Column="1"
                  Margin="8,0"/>
-        <Border Width="200" Margin="8" HorizontalAlignment="Right" Grid.Column="3" Grid.Row="1" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1"/>
+        <Border Width="200"
+                Margin="8"
+                HorizontalAlignment="Right" 
+                Grid.Column="3" 
+                Grid.Row="1" 
+                Grid.RowSpan="6" 
+                BorderBrush="Black" 
+                BorderThickness="1"
+                Background="White"
+                MouseLeftButtonDown="Border_MouseLeftButtonDown">
+            <Image x:Name="SImage"/>
+        </Border>
         <TextBlock FontSize="16"
                    VerticalAlignment="Center"
                    Grid.Row="7"
